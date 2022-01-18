@@ -1,0 +1,116 @@
+{
+  "Models": [
+    {
+      "NameModel": "A3",
+      "Description": "The Audi A3 Sedan is designed for customers who appreciate in cars, even compact ones, not only elegance, but also the ability to impress others.",
+      "Equipment": [
+        {
+          "Model": "A3 Advanced",
+          "Engine": "2.0i",
+          "Horsepower": "150",
+          "Price": "35200",
+          "Color": "White",
+          "IsAvailable": false
+        },
+        {
+          "Model": "A3 Avant Advanced",
+          "Engine": "2.0i",
+          "Horsepower": "180",
+          "Price": "37800",
+          "Color": "Green",
+          "IsAvailable": true
+        },
+        {
+          "Model": "A3 Sport",
+          "Engine": "2.5i",
+          "Horsepower": "225",
+          "Price": "53200",
+          "Color": "Black",
+          "IsAvailable": false
+        }
+      ]
+    },
+    {
+      "NameModel": "A4",
+      "Description": "Expressive dynamic front end, ideal proportions of the body and a memorable silhouette",
+      "Equipment": [
+        {
+          "Model": "A4 Advanced",
+          "Engine": "2.0i",
+          "Horsepower": "190",
+          "Price": "35200",
+          "Color": "White",
+          "IsAvailable": true
+        },
+        {
+          "Model": "A4 Avant Advanced",
+          "Engine": "2.0i",
+          "Horsepower": "250",
+          "Price": "37800",
+          "Color": "Black",
+          "IsAvailable": true
+        },
+        {
+          "Model": "A4 Sport",
+          "Engine": "2.5i",
+          "Horsepower": "295",
+          "Price": "53200",
+          "Color": "Black",
+          "IsAvailable": true
+        }
+      ]
+    },
+    {
+      "NameModel": "A6",
+      "Description": "All generations of this model were valued for the harmony of exquisite forms and perfect functions.",
+      "Equipment": [
+        {
+          "Model": "A6",
+          "Engine": "2.0i",
+          "Horsepower": "245",
+          "Price": "53800",
+          "Color": "Black",
+          "IsAvailable": false
+        },
+        {
+          "Model": "A6 Design",
+          "Engine": "3.0d",
+          "Horsepower": "249",
+          "Price": "74300",
+          "Color": "Black",
+          "IsAvailable": true
+        },
+        {
+          "Model": "A6 Sport",
+          "Engine": "2.0i",
+          "Horsepower": "245",
+          "Price": "60500",
+          "Color": "Blue",
+          "IsAvailable": false
+        },
+        {
+          "Model": "RS6 Avant",
+          "Engine": "4.0i",
+          "Horsepower": "600",
+          "Price": "164600",
+          "Color": "Grey",
+          "IsAvailable": false
+        }
+      ]
+    },
+    {
+      "NameModel": "A8",
+      "Description": "Expressive dynamic front end, ideal proportions of the body and a memorable silhouette",
+      "Equipment": [
+        {
+          "Model": "A8",
+          "Engine": "3.0i",
+          "Horsepower": "340",
+          "Price": "116400",
+          "Color": "Brilliant Black",
+          "IsAvailable": true
+        }
+      ]
+    }
+  ]
+}
