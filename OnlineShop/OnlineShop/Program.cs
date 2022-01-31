@@ -63,9 +63,10 @@ namespace OnlineShop
             }
             Console.ReadLine();
         }
-
         static void InStock()
         {
+            List<Equipment> AutoInStock = new List<Equipment>();
+            int number = 0;
             Console.Clear();
             for (int i = 0; i < ModelList.Count; i++)
             {
@@ -73,6 +74,8 @@ namespace OnlineShop
                 {
                     if (ModelList[i].Equipment[k].IsAvailable == true)
                     {
+                        AutoInStock.Add(ModelList[i].Equipment[k]);
+                        Console.WriteLine(number++ + ".");
                         Console.WriteLine("Model: " + ModelList[i].Equipment[k].Model);
                         Console.WriteLine("Engine: " + ModelList[i].Equipment[k].Engine);
                         Console.WriteLine("Prise: " + ModelList[i].Equipment[k].Price + "$");
