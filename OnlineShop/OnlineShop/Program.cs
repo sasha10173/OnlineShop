@@ -7,8 +7,9 @@ namespace OnlineShop
 {
     class Program
     {
-        static Corporation corporation = new Corporation();
+        static Corporation Audi = new Corporation();
         static List<Model> ModelList = new List<Model>();
+        static List<Equipment> AutoInStock = new List<Equipment>();
         static List<Banks> banks = new List<Banks>()
         {
             new Banks("JPMorgan Chase", 2),
@@ -22,7 +23,7 @@ namespace OnlineShop
             int UpIndent = 2;
             Console.Clear();
             Console.SetCursorPosition(LeftIndent, UpIndent++);
-            Console.WriteLine($"The percentage of the company is added to the cost of the car, which is {corporation.LoanInterest}%.");
+            Console.WriteLine($"The percentage of the company is added to the cost of the car, which is {Audi.LoanInterest}%.");
             Console.SetCursorPosition(LeftIndent, UpIndent++);
             Console.WriteLine("Plus, the percentage of the bank that you choose is added to this.");
             for (int i = 0; i < banks.Count; i++)
@@ -63,9 +64,8 @@ namespace OnlineShop
             }
             Console.ReadLine();
         }
-        static void InStock()
-        {
-            List<Equipment> AutoInStock = new List<Equipment>();
+        static int InStock()
+        {            
             int number = 0;
             Console.Clear();
             for (int i = 0; i < ModelList.Count; i++)
@@ -75,7 +75,7 @@ namespace OnlineShop
                     if (ModelList[i].Equipment[k].IsAvailable == true)
                     {
                         AutoInStock.Add(ModelList[i].Equipment[k]);
-                        Console.WriteLine(number++ + ".");
+                        Console.WriteLine(number++ + "");
                         Console.WriteLine("Model: " + ModelList[i].Equipment[k].Model);
                         Console.WriteLine("Engine: " + ModelList[i].Equipment[k].Engine);
                         Console.WriteLine("Prise: " + ModelList[i].Equipment[k].Price + "$");
@@ -84,15 +84,48 @@ namespace OnlineShop
                 }
                 Console.WriteLine("-----------");
             }
-            Console.ReadLine();
+            Console.WriteLine("What car do you want to buy?");
+            Console.WriteLine("(*Enter number*)");
+            int chose = int.Parse(Console.ReadLine());
+            return chose;
+
+
         }
+
+        static void BuyCar(int chose, int balance)
+        {
+            Console.Clear();
+            Console.WriteLine($"You want to buy ");
+            Console.WriteLine($"Name model: {AutoInStock[chose].Model}");
+            Console.WriteLine($"Engine: {AutoInStock[chose].Engine}");
+            Console.WriteLine($"Horse Power: {AutoInStock[chose].Horsepower}");
+            Console.WriteLine($"Color: {AutoInStock[chose].Color}");
+            Console.WriteLine($"Prise: {AutoInStock[chose].Price}");
+            int BuyOrNot = Audi.SellCar(int.Parse(AutoInStock[chose].Price), balance);
+            if (BuyOrNot == 1)
+            {
+                if (balance>= int.Parse(AutoInStock[chose].Price))
+                {
+                    Console.WriteLine("Great, here are your keys, you can drive away in a brand new Audi.");
+                }
+                else if (balance < int.Parse(AutoInStock[chose].Price))
+                {
+
+                }
+            }
+            else if (BuyOrNot == 2)
+            {
+                Console.WriteLine("All the best, we are always waiting for you in our store.");
+                
+            }
+        }
+
         static void Main(string[] args)
         {
             #region Json
             string PatchJson = "AutoModels.json";
             var rootobject = JsonSerializer.Deserialize<Rootobject>(File.ReadAllText(PatchJson));
             #endregion
-
             
             for (int i = 0; i < rootobject.Models.Length; i++)
             {
@@ -101,13 +134,13 @@ namespace OnlineShop
 
             #region Opening Talk
             
-            Console.WriteLine($"-Hello, welcome to the {corporation.Name}");
+            Console.WriteLine($"-Hello, welcome to the {Audi.Name}");
             Console.WriteLine("My name is August Horch");
             Console.WriteLine("How can I call you?");
             Console.Write("-You can call me: ");
             string Name = Console.ReadLine();
 
-            Buyer buyer = new Buyer(Name);
+            Buyer buyer = new Buyer(Name, 45700);
                 #endregion
 
             while(true)
@@ -126,7 +159,8 @@ namespace OnlineShop
                 }
                 if (chose == 2)
                 {
-                    InStock();
+                    int numberCar = InStock();
+                    BuyCar(numberCar, buyer.Balance);
                 }
                 if (chose == 3)
                 {

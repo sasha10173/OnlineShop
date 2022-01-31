@@ -7,22 +7,14 @@ namespace OnlineShop
     class Buyer
     {
         public string Name { get; set; }
-        public decimal Balance
-        {
-            get
-            {
-                return Balance;
-            }
-            set
-            {
-                Balance = 45700M;
-            }
-        }
+        public int Balance { get; set; }
+        
 
 
-        public Buyer(string Name)
+        public Buyer(string Name, int balance)
         {
             this.Name = Name;
+            Balance = balance;
         }
     }
 }
