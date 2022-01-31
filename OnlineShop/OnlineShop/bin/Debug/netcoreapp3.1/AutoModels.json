@@ -1,7 +1,7 @@
 {
   "Models": [
     {
-      "NameModel": "A3",
+      "NameModel": "Audi A3",
       "Description": "The Audi A3 Sedan is designed for customers who appreciate in cars, even compact ones, not only elegance, but also the ability to impress others.",
       "Equipment": [
         {
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "NameModel": "A4",
+      "NameModel": "Audi A4",
       "Description": "Expressive dynamic front end, ideal proportions of the body and a memorable silhouette",
       "Equipment": [
         {
@@ -40,7 +40,7 @@
           "Horsepower": "190",
           "Price": "35200",
           "Color": "White",
-          "IsAvailable": true
+          "IsAvailable": false
         },
         {
           "Model": "A4 Avant Advanced",
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "NameModel": "A6",
+      "NameModel": "Audi A6",
       "Description": "All generations of this model were valued for the harmony of exquisite forms and perfect functions.",
       "Equipment": [
         {
@@ -70,7 +70,7 @@
           "Horsepower": "245",
           "Price": "53800",
           "Color": "Black",
-          "IsAvailable": false
+          "IsAvailable": true
         },
         {
           "Model": "A6 Design",
@@ -94,12 +94,12 @@
           "Horsepower": "600",
           "Price": "164600",
           "Color": "Grey",
-          "IsAvailable": false
+          "IsAvailable": true
         }
       ]
     },
     {
-      "NameModel": "A8",
+      "NameModel": "Audi A8",
       "Description": "Expressive dynamic front end, ideal proportions of the body and a memorable silhouette",
       "Equipment": [
         {
