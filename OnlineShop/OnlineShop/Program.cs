@@ -7,14 +7,15 @@ namespace OnlineShop
 {
     class Program
     {
+        static Random rnd = new Random();
         static Corporation Audi = new Corporation();
         static List<Model> ModelList = new List<Model>();
         static List<Equipment> AutoInStock = new List<Equipment>();
         static List<Banks> banks = new List<Banks>()
         {
-            new Banks("JPMorgan Chase", 2),
-            new Banks("Bank of America", 3),
-            new Banks("Wells Fargo Chase", 5)
+            new Banks("JPMorgan Chase", 12),
+            new Banks("Bank of America", 13),
+            new Banks("Wells Fargo Chase", 15)
         };     
 
         static void LendingRules()
@@ -91,8 +92,23 @@ namespace OnlineShop
 
 
         }
+        static void CreditOn(int price)
+        {
+            int randomBank = rnd.Next(banks.Count);
+            Console.WriteLine($"When considering your application, you agreed to give a loan to only one bank {banks[randomBank].Name}, " +
+                $"The bank's interest is {banks[randomBank].LoanInterest}%");
+            int FullPrice = banks[randomBank].FullCost(price,Audi.LoanInterest);
+            Console.WriteLine($"The full coast purchase: {FullPrice}$ ");
+            Console.WriteLine("Please confirm purchase.");
+            Console.WriteLine("1. I agree.");
+            Console.WriteLine("2. I disagree.");
+            Console.WriteLine("(*Enter the number.*)");
+            Console.Write("Your choise: ");
+            int Chose = int.Parse(Console.ReadLine());
+            
+        }
 
-        static void BuyCar(int chose, int balance)
+        static bool BuyCar(int chose, int balance)
         {
             Console.Clear();
             Console.WriteLine($"You want to buy ");
@@ -107,17 +123,20 @@ namespace OnlineShop
                 if (balance>= int.Parse(AutoInStock[chose].Price))
                 {
                     Console.WriteLine("Great, here are your keys, you can drive away in a brand new Audi.");
+                    return false;
                 }
                 else if (balance < int.Parse(AutoInStock[chose].Price))
                 {
-
+                    CreditOn(int.Parse(AutoInStock[chose].Price));
+                    return false;
                 }
             }
             else if (BuyOrNot == 2)
             {
                 Console.WriteLine("All the best, we are always waiting for you in our store.");
-                
+                return false;
             }
+            return true;
         }
 
         static void Main(string[] args)
@@ -141,9 +160,11 @@ namespace OnlineShop
             string Name = Console.ReadLine();
 
             Buyer buyer = new Buyer(Name, 45700);
-                #endregion
+            #endregion
 
-            while(true)
+            bool exit = true;
+
+            while(exit)
             {
                 Console.WriteLine($"-{Name}, What would you like to see?");
 
@@ -160,7 +181,7 @@ namespace OnlineShop
                 if (chose == 2)
                 {
                     int numberCar = InStock();
-                    BuyCar(numberCar, buyer.Balance);
+                    exit = BuyCar(numberCar, buyer.Balance);
                 }
                 if (chose == 3)
                 {

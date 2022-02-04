@@ -14,11 +14,11 @@ namespace OnlineShop
             this.LoanInterest = LoanInterest;
         }
 
-        private int FullCost(int Price ,int Percent)
+        public int FullCost(int Price ,int PercentCor)
         {
-            int proc = (LoanInterest / 10) + (Percent / 10);
-            int remainder = (Price * proc) / 100;
-            int sum = Price + remainder;
+            double proc = ((double)LoanInterest / 10) + ((double)PercentCor / 10);
+            double remainder = (Price * proc) / 10;
+            int sum = Price + (int)remainder;
             return sum;
         }
     }
