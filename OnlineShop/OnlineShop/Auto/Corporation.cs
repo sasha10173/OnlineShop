@@ -18,7 +18,7 @@ namespace OnlineShop
         {
             if (balance>=price)
             {
-                Console.WriteLine($"Your balance is {balance}, the price of the car is {price}," +
+                Console.WriteLine($"Your balance is {balance}$, the price of the car is {price}$," +
                     $" you have enough funds, you can buy a car right now.");
                 Console.WriteLine("Your Choice");
                 Console.WriteLine("1. I buy a car.");
@@ -29,7 +29,7 @@ namespace OnlineShop
             }
             else if (balance<price)
             {
-                Console.WriteLine($"Your balance is {balance}, the price of the car is {price}, alas," +
+                Console.WriteLine($"Your balance is {balance}$, the price of the car is {price}$, alas," +
                     $" you do not have enough funds, but you can get a loan.");
                 Console.WriteLine("Your Choice");
                 Console.WriteLine("1. I will take a loan.");

@@ -59,7 +59,7 @@ namespace OnlineShop
                 Console.WriteLine($"Engine: {item.Engine}");
                 Console.WriteLine($"Horse Power: {item.Horsepower}");
                 Console.WriteLine($"Cplor: {item.Color}");
-                Console.WriteLine($"Prise: {item.Price}");
+                Console.WriteLine($"Prise: {item.Price}$");
                 Console.WriteLine($"Availability {item.IsAvailable}");
                 Console.WriteLine("--------------");
             }
@@ -94,9 +94,10 @@ namespace OnlineShop
         }
         static void CreditOn(int price)
         {
+            Console.Clear();
             int randomBank = rnd.Next(banks.Count);
-            Console.WriteLine($"When considering your application, you agreed to give a loan to only one bank {banks[randomBank].Name}, " +
-                $"The bank's interest is {banks[randomBank].LoanInterest}%");
+            Console.WriteLine($"When considering your application you agreed to give a loan to only one bank *{banks[randomBank].Name}*, " +
+                $"The banks interest is {banks[randomBank].LoanInterest}%");
             int FullPrice = banks[randomBank].FullCost(price,Audi.LoanInterest);
             Console.WriteLine($"The full coast purchase: {FullPrice}$ ");
             Console.WriteLine("Please confirm purchase.");
@@ -107,7 +108,6 @@ namespace OnlineShop
             int Chose = int.Parse(Console.ReadLine());
             
         }
-
         static bool BuyCar(int chose, int balance)
         {
             Console.Clear();
@@ -116,7 +116,7 @@ namespace OnlineShop
             Console.WriteLine($"Engine: {AutoInStock[chose].Engine}");
             Console.WriteLine($"Horse Power: {AutoInStock[chose].Horsepower}");
             Console.WriteLine($"Color: {AutoInStock[chose].Color}");
-            Console.WriteLine($"Prise: {AutoInStock[chose].Price}");
+            Console.WriteLine($"Prise: {AutoInStock[chose].Price}$");
             int BuyOrNot = Audi.SellCar(int.Parse(AutoInStock[chose].Price), balance);
             if (BuyOrNot == 1)
             {
@@ -166,6 +166,7 @@ namespace OnlineShop
 
             while(exit)
             {
+                Console.Clear();
                 Console.WriteLine($"-{Name}, What would you like to see?");
 
                 Console.WriteLine(" 1. The lineup.");
@@ -174,18 +175,19 @@ namespace OnlineShop
 
                 Console.Write("-I would like to see: ");
                 int chose = Convert.ToInt32(Console.ReadLine());
-                if (chose== 1)
+                
+                switch (chose)
                 {
-                    LineUp();
-                }
-                if (chose == 2)
-                {
-                    int numberCar = InStock();
-                    exit = BuyCar(numberCar, buyer.Balance);
-                }
-                if (chose == 3)
-                {
-                    LendingRules();
+                    case 1:
+                        LineUp();
+                        break;
+                    case 2:
+                        int numberCar = InStock();
+                        exit = BuyCar(numberCar, buyer.Balance);
+                        break;
+                    case 3:
+                        LendingRules();
+                        break;
                 }
 
             }
