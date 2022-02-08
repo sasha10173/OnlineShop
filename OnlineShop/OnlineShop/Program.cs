@@ -37,20 +37,45 @@ namespace OnlineShop
         }
         static void LineUp()
         {
-            int modelNumber = 0;
-            Console.Clear();
-
-            foreach (var item in ModelList)
+            int chose = 0;
+            bool exit = true;
+            while (exit)
             {
-                Console.WriteLine($"{modelNumber++}. {item.NameModel}") ;
-                Console.WriteLine(item.Description);
-                Console.WriteLine("---------------------");
+                int modelNumber = 0;
+                Console.Clear();
+
+                foreach (var item in ModelList)
+                {
+                    Console.WriteLine($"{modelNumber++}. {item.NameModel}");
+                    Console.WriteLine(item.Description);
+                    Console.WriteLine("---------------------");
+                }
+                Console.WriteLine();
+                Console.WriteLine("Which model would you like to see in more detail?\n");
+                Console.WriteLine("(*Enter number*)");
+                Console.Write("I would like to see the model: ");
+
+                try
+                {
+                    chose = int.Parse(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("You entered incorrect data, please try again.");
+                    Console.WriteLine("Press any key.");
+                    Console.ReadLine();
+                    continue;
+                }
+                if (chose < 0 | chose > (ModelList.Count-1))
+                {
+                    Console.WriteLine("You entered incorrect data, please try again.");
+                    Console.WriteLine("Press any key.");
+                    Console.ReadLine();
+                    continue;
+                }
+                exit = false;
             }
-            Console.WriteLine();
-            Console.WriteLine("Which model would you like to see in more detail?\n");
-            Console.WriteLine("(*Enter number*)");
-            Console.Write("I would like to see the model: ");
-            int chose = int.Parse(Console.ReadLine());
+
             Console.Clear();
 
             foreach (var item in ModelList[chose].Equipment)
@@ -66,32 +91,57 @@ namespace OnlineShop
             Console.ReadLine();
         }
         static int InStock()
-        {            
-            int number = 0;
-            Console.Clear();
-            for (int i = 0; i < ModelList.Count; i++)
+        {           
+            bool exit = true;
+            int chose = 0;
+            while (exit)
             {
-                for (int k = 0; k < ModelList[i].Equipment.Length; k++)
+                int number = 0;
+                Console.Clear();
+                for (int i = 0; i < ModelList.Count; i++)
                 {
-                    if (ModelList[i].Equipment[k].IsAvailable == true)
+                    for (int k = 0; k < ModelList[i].Equipment.Length; k++)
                     {
-                        AutoInStock.Add(ModelList[i].Equipment[k]);
-                        Console.WriteLine(number++ + "");
-                        Console.WriteLine("Model: " + ModelList[i].Equipment[k].Model);
-                        Console.WriteLine("Engine: " + ModelList[i].Equipment[k].Engine);
-                        Console.WriteLine("Prise: " + ModelList[i].Equipment[k].Price + "$");
-                        Console.WriteLine();
+                        if (ModelList[i].Equipment[k].IsAvailable == true)
+                        {
+                            AutoInStock.Add(ModelList[i].Equipment[k]);
+                            Console.WriteLine(number++ + "");
+                            Console.WriteLine("Model: " + ModelList[i].Equipment[k].Model);
+                            Console.WriteLine("Engine: " + ModelList[i].Equipment[k].Engine);
+                            Console.WriteLine("Prise: " + ModelList[i].Equipment[k].Price + "$");
+                            Console.WriteLine();
+                        }
                     }
+                    Console.WriteLine("-----------");
                 }
-                Console.WriteLine("-----------");
+                Console.WriteLine("What car do you want to buy?");
+                Console.WriteLine("(*Enter number*)");
+
+                try
+                {
+                    chose = int.Parse(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("You entered incorrect data, please try again.");
+                    Console.WriteLine("Press any key.");
+                    Console.ReadLine();
+                    continue;
+                }
+                if (chose < 0 | chose > (AutoInStock.Count - 2))
+                {
+                    Console.WriteLine("You entered incorrect data, please try again.");
+                    Console.WriteLine("Press any key.");
+                    Console.ReadLine();
+                    continue;
+                }
+                exit = false;
             }
-            Console.WriteLine("What car do you want to buy?");
-            Console.WriteLine("(*Enter number*)");
-            int chose = int.Parse(Console.ReadLine());
             return chose;
 
 
         }
+
         static void CreditOn(int price)
         {
             Console.Clear();
@@ -106,8 +156,10 @@ namespace OnlineShop
             Console.WriteLine("(*Enter the number.*)");
             Console.Write("Your choise: ");
             int Chose = int.Parse(Console.ReadLine());
-            
+            Console.WriteLine("Great, here are your keys, you can drive away in a brand new Audi.");
+            Console.WriteLine("All the best, we are always waiting for you in our store.");
         }
+
         static bool BuyCar(int chose, int balance)
         {
             Console.Clear();
@@ -174,7 +226,26 @@ namespace OnlineShop
                 Console.WriteLine(" 3. Lending rules.");
 
                 Console.Write("-I would like to see: ");
-                int chose = Convert.ToInt32(Console.ReadLine());
+                int chose = 0;
+                try
+                {
+                chose = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("You entered incorrect data, please try again.");
+                    Console.WriteLine("Press any key.");
+                    Console.ReadLine();
+                    continue;
+                }
+
+                if (chose < 1 | chose > 3 )
+                {
+                    Console.WriteLine("You entered incorrect data, please try again.");
+                    Console.WriteLine("Press any key.");
+                    Console.ReadLine();
+                    continue;
+                }
                 
                 switch (chose)
                 {
