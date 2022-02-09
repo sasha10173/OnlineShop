@@ -62,14 +62,14 @@ namespace OnlineShop
                 catch (Exception)
                 {
                     Console.WriteLine("You entered incorrect data, please try again.");
-                    Console.WriteLine("Press any key.");
+                    Console.WriteLine("Please press enter.");
                     Console.ReadLine();
                     continue;
                 }
                 if (chose < 0 | chose > (ModelList.Count-1))
                 {
                     Console.WriteLine("You entered incorrect data, please try again.");
-                    Console.WriteLine("Press any key.");
+                    Console.WriteLine("Please press enter.");
                     Console.ReadLine();
                     continue;
                 }
@@ -85,7 +85,7 @@ namespace OnlineShop
                 Console.WriteLine($"Horse Power: {item.Horsepower}");
                 Console.WriteLine($"Cplor: {item.Color}");
                 Console.WriteLine($"Prise: {item.Price}$");
-                Console.WriteLine($"Availability {item.IsAvailable}");
+                Console.WriteLine($"Availability: {item.IsAvailable}");
                 Console.WriteLine("--------------");
             }
             Console.ReadLine();
@@ -124,40 +124,70 @@ namespace OnlineShop
                 catch (Exception)
                 {
                     Console.WriteLine("You entered incorrect data, please try again.");
-                    Console.WriteLine("Press any key.");
+                    Console.WriteLine("Please press enter.");
                     Console.ReadLine();
                     continue;
                 }
-                if (chose < 0 | chose > (AutoInStock.Count - 2))
+                if (chose < 0 | chose > (AutoInStock.Count - 1))
                 {
                     Console.WriteLine("You entered incorrect data, please try again.");
-                    Console.WriteLine("Press any key.");
+                    Console.WriteLine("Please press enter.");
                     Console.ReadLine();
                     continue;
                 }
                 exit = false;
             }
             return chose;
-
-
         }
 
         static void CreditOn(int price)
         {
-            Console.Clear();
-            int randomBank = rnd.Next(banks.Count);
-            Console.WriteLine($"When considering your application you agreed to give a loan to only one bank *{banks[randomBank].Name}*, " +
-                $"The banks interest is {banks[randomBank].LoanInterest}%");
-            int FullPrice = banks[randomBank].FullCost(price,Audi.LoanInterest);
-            Console.WriteLine($"The full coast purchase: {FullPrice}$ ");
-            Console.WriteLine("Please confirm purchase.");
-            Console.WriteLine("1. I agree.");
-            Console.WriteLine("2. I disagree.");
-            Console.WriteLine("(*Enter the number.*)");
-            Console.Write("Your choise: ");
-            int Chose = int.Parse(Console.ReadLine());
-            Console.WriteLine("Great, here are your keys, you can drive away in a brand new Audi.");
-            Console.WriteLine("All the best, we are always waiting for you in our store.");
+            bool exit = true;
+            while (exit)
+            {
+                int Chose = 0;
+                Console.Clear();
+                int randomBank = rnd.Next(banks.Count);
+                Console.WriteLine($"When considering your application you agreed to give a loan to only one bank *{banks[randomBank].Name}*, " +
+                    $"The banks interest is {banks[randomBank].LoanInterest}%");
+                int FullPrice = banks[randomBank].FullCost(price, Audi.LoanInterest);
+                Console.WriteLine($"The full coast purchase: {FullPrice}$ ");
+                Console.WriteLine("Please confirm purchase.");
+                Console.WriteLine("1. I agree.");
+                Console.WriteLine("2. I disagree.");
+                Console.WriteLine("(*Enter the number.*)");
+                Console.Write("Your choise: ");
+
+                try
+                {
+                    Chose = int.Parse(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("You entered incorrect data, please try again.");
+                    Console.WriteLine("Please press enter.");
+                    Console.ReadLine();
+                    continue;
+                }
+                switch (Chose)
+                {
+                    case 1:
+                        Console.WriteLine("Great, here are your keys, you can drive away in a brand new Audi.");
+                        Console.WriteLine("All the best, we are always waiting for you in our store.");
+                        exit = false;
+                        break;
+                    case 2:
+                        Console.WriteLine("All the best, we are always waiting for you in our store.");
+                        exit = false;
+                        break;
+
+                    default:
+                        Console.WriteLine("You entered incorrect data, please try again.");
+                        Console.WriteLine("Please press enter.");
+                        Console.ReadLine();                 
+                        break;
+                }
+            }
         }
 
         static bool BuyCar(int chose, int balance)
@@ -234,15 +264,15 @@ namespace OnlineShop
                 catch (Exception)
                 {
                     Console.WriteLine("You entered incorrect data, please try again.");
-                    Console.WriteLine("Press any key.");
-                    Console.ReadLine();
+                    Console.WriteLine("Please press enter.");
+                    Console.ReadKey();
                     continue;
                 }
 
                 if (chose < 1 | chose > 3 )
                 {
                     Console.WriteLine("You entered incorrect data, please try again.");
-                    Console.WriteLine("Press any key.");
+                    Console.WriteLine("Please press enter.");
                     Console.ReadLine();
                     continue;
                 }
